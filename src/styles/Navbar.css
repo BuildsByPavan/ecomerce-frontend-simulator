@@ -1,0 +1,55 @@
+/* Reset */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+/* Navbar container */
+nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  background-color: #333;
+  color: white;
+  padding: 20px 20px;
+}
+
+/* Logo / Title */
+nav h2 {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+/* Links container */
+nav div {
+  display: flex;
+  align-items: center;
+  gap: 15px;
+}
+
+/* Links */
+nav a {
+  text-decoration: none;
+  color: white;
+  transition: color 0.3s;
+}
+
+nav a:hover {
+  color: #ff9800; /* hover effect */
+}
+
+/* Logout button */
+nav button {
+  background-color: #ff4d4d;
+  border: none;
+  color: white;
+  padding: 5px 10px;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+nav button:hover {
+  background-color: #e60000;
+}

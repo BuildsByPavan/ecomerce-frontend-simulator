@@ -1,11 +1,17 @@
 import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import useAuthStore from "../store/authStore";
+import "../styles/Register.css"; // import css
 
 function Register() {
   const [formData, setFormData] = useState({
-    username: "",
+    name: "",
     email: "",
     password: "",
   });
+
+  const register = useAuthStore((state) => state.register);
+  const navigate = useNavigate();
 
   const handleChange = (e) => {
     setFormData({ ...formData, [e.target.name]: e.target.value });
@@ -13,47 +19,57 @@ function Register() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    alert(`Registering: ${formData.username} | ${formData.email}`);
+    register(formData.name, formData.email, formData.password);
+    alert(`Registered successfully! Welcome, ${formData.name}`);
+    navigate("/");
   };
 
   return (
-    <div>
-      <h2>Register</h2>
-      <form onSubmit={handleSubmit}>
+    <div className="register-container">
+      <form className="register-box" onSubmit={handleSubmit}>
+        <h2>Register</h2>
+
         <div>
-          <label>Username:</label>
-          <input 
-            type="text" 
-            name="username" 
-            value={formData.username} 
-            onChange={handleChange} 
-            required 
+          <label>Username</label>
+          <input
+            type="text"
+            name="name"
+            value={formData.name}
+            onChange={handleChange}
+            placeholder="Enter your username"
+            required
           />
         </div>
 
         <div>
-          <label>Email:</label>
-          <input 
-            type="email" 
-            name="email" 
-            value={formData.email} 
-            onChange={handleChange} 
-            required 
+          <label>Email</label>
+          <input
+            type="email"
+            name="email"
+            value={formData.email}
+            onChange={handleChange}
+            placeholder="Enter your email"
+            required
           />
         </div>
 
         <div>
-          <label>Password:</label>
-          <input 
-            type="password" 
-            name="password" 
-            value={formData.password} 
-            onChange={handleChange} 
-            required 
+          <label>Password</label>
+          <input
+            type="password"
+            name="password"
+            value={formData.password}
+            onChange={handleChange}
+            placeholder="Enter your password"
+            required
           />
         </div>
 
         <button type="submit">Register</button>
+
+        <span onClick={() => navigate("/login")}>
+          Already have an account? Login
+        </span>
       </form>
     </div>
   );

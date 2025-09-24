@@ -1,9 +1,52 @@
-import React from 'react'
+import React from "react";
+import useCartStore from "../store/cartStore";
+import useAuthStore from "../store/authStore";
+import "../styles/cart.css"
 
 function Cart() {
+  const { items, removeItem, checkout } = useCartStore();
+  const { user } = useAuthStore();
+
+  const handleCheckout = () => {
+    checkout(user?.email);
+  };
+
+  const totalValue = items.reduce((sum, item) => sum + item.price, 0);
+  const totalQuantity = items.reduce((sum, item) => sum + (item.quantity || 1), 0);
   return (
-    <div>Cart</div>
-  )
+    <div className="cart-container">
+      <h2 className="cart-title">My Cart</h2>
+
+      {items.length === 0 ? (
+        <p className="empty-msg">Your cart is empty.</p>
+      ) : (
+        <>
+          <ul className="cart-list">
+            {items.map((item, i) => (
+              <li key={i} className="cart-item">
+                <span>
+                 {item.image} {item.name} - ₹{item.price}
+                </span>
+                <button className="remove-btn" onClick={() => removeItem(i)}>
+                  Remove
+                </button>
+              </li>
+            ))}
+          </ul>
+
+          {/* Total Value Section */}
+          <div className="cart-total">
+            <strong>Total:</strong> ₹{totalValue}{" | "}
+            <strong>Total Quantity:</strong> {totalQuantity}
+          </div>
+
+          <button className="checkout-btn" onClick={handleCheckout}>
+            Checkout
+          </button>
+        </>
+      )}
+    </div>
+  );
 }
 
-export default Cart
+export default Cart;

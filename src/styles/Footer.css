@@ -1,0 +1,30 @@
+footer {
+  background-color: #222;
+  color: #ccc;
+  padding: 20px;
+  text-align: center;
+  font-size: 14px;
+}
+
+/* Layout: stack items with spacing */
+footer div {
+  margin: 10px 0;
+}
+
+/* Footer links */
+footer a {
+  color: #ccc;
+  text-decoration: none;
+  margin: 0 8px;
+  transition: color 0.3s;
+}
+
+footer a:hover {
+  color: #ff9800; /* orange hover */
+}
+
+/* Divider between items */
+footer div:not(:last-child) {
+  border-bottom: 1px solid #444;
+  padding-bottom: 10px;
+}

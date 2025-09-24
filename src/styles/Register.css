@@ -1,0 +1,77 @@
+/* Wrapper */
+.register-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 85vh;
+  background: #f5f5f5;
+}
+
+/* Card */
+.register-box {
+  background: #fff;
+  padding: 30px 40px;
+  border-radius: 10px;
+  box-shadow: 0px 4px 12px rgba(0,0,0,0.1);
+  width: 380px;
+}
+
+/* Heading */
+.register-box h2 {
+  text-align: center;
+  margin-bottom: 20px;
+  color: #333;
+}
+
+/* Form fields */
+.register-box label {
+  display: block;
+  margin-bottom: 5px;
+  font-size: 14px;
+  color: #444;
+}
+
+.register-box input {
+  width: 100%;
+  padding: 10px;
+  margin-bottom: 15px;
+  border: 1px solid #ccc;
+  border-radius: 6px;
+  font-size: 14px;
+}
+
+.register-box input:focus {
+  outline: none;
+  border-color: #007bff;
+}
+
+/* Button */
+.register-box button {
+  width: 100%;
+  padding: 10px;
+  background: #a72828;
+  color: #fff;
+  border: none;
+  border-radius: 6px;
+  font-size: 16px;
+  cursor: pointer;
+  transition: background 0.3s;
+}
+
+.register-box button:hover {
+  background: #c96572;
+}
+
+/* Login link */
+.register-box span {
+  display: block;
+  margin-top: 15px;
+  text-align: center;
+  color: #007bff;
+  cursor: pointer;
+  font-size: 14px;
+}
+
+.register-box span:hover {
+  text-decoration: underline;
+}

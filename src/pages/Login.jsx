@@ -1,49 +1,46 @@
-import React from 'react'
-import { useState } from 'react'
+import { useState } from "react";
+import { useNavigate } from "react-router-dom";
+import useAuthStore from "../store/authStore";
+import "../styles/Login.css"; 
+
 function Login() {
-    const[formdata, setformdata] = useState({
-        email : "",
-        password : "",
-    })
-  const handleChange = (e) => {
-    setformdata({ ...formdata, [e.target.name]: e.target.value });
-  };
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+  const login = useAuthStore((state) => state.login);
+  const navigate = useNavigate();
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    alert(`Logging in with: ${formdata.email} | ${formdata.password}`);
+    login(email, password);
+    navigate("/");
   };
 
   return (
-    <div>
-      <h2>Login</h2>
-      <form onSubmit={handleSubmit}>
-        <div>
-          <label>Email:</label>
-          <input 
-            type="email" 
-            name="email" 
-            value={formdata.email} 
-            onChange={handleChange} 
-            required 
-          />
-        </div>
-
-        <div>
-          <label>Password:</label>
-          <input 
-            type="password" 
-            name="password" 
-            value={formdata.password} 
-            onChange={handleChange} 
-            required 
-          />
-        </div>
-
+    <div className="login-container">
+      <form className="login-box" onSubmit={handleSubmit}>
+        <h2>Login</h2>
+        <input
+          value={email}
+          onChange={(e) => setEmail(e.target.value)}
+          placeholder="Email"
+          type="email"
+          required
+        />
+        <input
+          value={password}
+          type="password"
+          onChange={(e) => setPassword(e.target.value)}
+          placeholder="Password"
+          required
+        />
         <button type="submit">Login</button>
+
+        <span onClick={() => navigate("/register")}>
+          Don’t have an account? Register
+        </span>
       </form>
     </div>
   );
 }
 
-export default Login
+export default Login;
