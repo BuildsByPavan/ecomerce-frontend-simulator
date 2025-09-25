@@ -2,6 +2,8 @@ import React from "react";
 import { useNavigate } from "react-router-dom";
 import useCartStore from "../store/cartStore";
 import useAuthStore from "../store/authStore";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "../styles/Cart.css";
 
 function Cart() {
@@ -11,11 +13,29 @@ function Cart() {
 
   const handleCheckout = () => {
     if (!user) {
-      alert("Please log in to proceed to checkout");
+      toast.error("Please log in to proceed to checkout", {
+        position: "top-right",
+        autoClose: 2000,
+        theme: "colored",
+      });
       navigate("/login");
       return;
     }
     checkout(user.email);
+    toast.success("Checkout successful!", {
+      position: "top-right",
+      autoClose: 2000,
+      theme: "colored",
+    });
+  };
+
+  const handleRemove = (id, name) => {
+    removeItem(id);
+    toast.info(`${name} removed from cart`, {
+      position: "top-right",
+      autoClose: 2000,
+      theme: "colored",
+    });
   };
 
   const totalValue = items.reduce((sum, item) => sum + item.price * (item.quantity || 1), 0);
@@ -36,7 +56,12 @@ function Cart() {
                 <span className="cart-details">
                   {item.name} - ₹{item.price} × {item.quantity || 1}
                 </span>
-                <button className="remove-btn" onClick={() => removeItem(item.id)}>Remove</button>
+                <button
+                  className="remove-btn"
+                  onClick={() => handleRemove(item.id, item.name)}
+                >
+                  Remove
+                </button>
               </li>
             ))}
           </ul>
@@ -46,9 +71,14 @@ function Cart() {
             <strong>Total Quantity:</strong> {totalQuantity}
           </div>
 
-          <button className="checkout-btn" onClick={handleCheckout}>Checkout</button>
+          <button className="checkout-btn" onClick={handleCheckout}>
+            Checkout
+          </button>
         </>
       )}
+
+      {/* Toast Notifications */}
+      <ToastContainer />
     </div>
   );
 }

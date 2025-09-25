@@ -1,6 +1,8 @@
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import useGuestCartStore from "../store/useGuestCartStore";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 import "../styles/Cart.css";
 
 function GuestCart() {
@@ -19,8 +21,23 @@ function GuestCart() {
   }, [storeItems]);
 
   const handleCheckout = () => {
-    checkout(); // Shows alert to login
+    // Instead of alert inside store, show toast here
+    toast.error("Please log in to proceed to checkout", {
+      position: "top-right",
+      autoClose: 2000,
+      theme: "colored",
+    });
+    checkout();
     navigate("/login");
+  };
+
+  const handleRemove = (id, name) => {
+    removeItem(id);
+    toast.info(`${name} removed from cart`, {
+      position: "top-right",
+      autoClose: 2000,
+      theme: "colored",
+    });
   };
 
   const totalValue = items.reduce((sum, item) => sum + item.price * (item.quantity || 1), 0);
@@ -41,7 +58,10 @@ function GuestCart() {
                 <span className="cart-details">
                   {item.name} - ₹{item.price} × {item.quantity || 1}
                 </span>
-                <button className="remove-btn" onClick={() => removeItem(item.id)}>
+                <button
+                  className="remove-btn"
+                  onClick={() => handleRemove(item.id, item.name)}
+                >
                   Remove
                 </button>
               </li>
@@ -49,7 +69,8 @@ function GuestCart() {
           </ul>
 
           <div className="cart-total">
-            <strong>Total:</strong> ₹{totalValue} | <strong>Total Quantity:</strong> {totalQuantity}
+            <strong>Total:</strong> ₹{totalValue} |{" "}
+            <strong>Total Quantity:</strong> {totalQuantity}
           </div>
 
           <button className="checkout-btn" onClick={handleCheckout}>
@@ -57,6 +78,9 @@ function GuestCart() {
           </button>
         </>
       )}
+
+      {/* Toast notifications */}
+      <ToastContainer />
     </div>
   );
 }

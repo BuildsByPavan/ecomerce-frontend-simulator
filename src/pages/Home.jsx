@@ -4,6 +4,8 @@ import useCartStore from "../store/cartStore";
 import useGuestCartStore from "../store/useGuestCartStore";
 import useAuthStore from "../store/authStore";
 import ProductCard from "../components/ProductCard";
+import { ToastContainer, toast } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css"; // import styles
 import "../styles/Home.css";
 
 function Home() {
@@ -24,7 +26,15 @@ function Home() {
     } else {
       addGuestItem(product);
     }
-    alert(`${product.name} added to cart!`);
+    toast.success(`${product.name} added to cart!`, {
+      position: "top-right",
+      autoClose: 2000,
+      hideProgressBar: false,
+      closeOnClick: true,
+      pauseOnHover: false,
+      draggable: true,
+      theme: "colored",
+    });
   };
 
   // Get unique categories
@@ -82,6 +92,9 @@ function Home() {
           )}
         </main>
       </div>
+
+      {/* Toast notifications */}
+      <ToastContainer />
     </div>
   );
 }

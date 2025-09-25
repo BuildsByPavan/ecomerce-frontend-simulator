@@ -99,3 +99,82 @@
 .checkout-btn:hover {
   background-color: #45a049;
 }
+
+/* ---------- Responsive Styles ---------- */
+
+/* Tablet & Small screens */
+@media (max-width: 768px) {
+  .cart-container {
+    max-width: 90%;
+    margin: 20px auto;
+    padding: 15px;
+  }
+
+  .cart-title {
+    font-size: 24px;
+  }
+
+  .cart-item {
+    gap: 10px;
+  }
+
+  .cart-image {
+    width: 60px;
+    height: 60px;
+  }
+
+  .cart-details {
+    font-size: 14px;
+  }
+
+  .remove-btn {
+    font-size: 12px;
+    padding: 5px 10px;
+  }
+
+  .cart-total {
+    font-size: 18px;
+  }
+
+  .checkout-btn {
+    font-size: 16px;
+    padding: 10px;
+  }
+}
+
+/* Mobile phones */
+@media (max-width: 480px) {
+  .cart-item {
+    flex-direction: column; /* stack image, details, and button */
+    align-items: flex-start;
+  }
+
+  .cart-image {
+    width: 100%;
+    height: auto;
+    border-radius: 6px;
+  }
+
+  .remove-btn {
+    align-self: flex-end;
+    margin-top: 8px;
+  }
+
+  .cart-details {
+    width: 100%;
+  }
+
+  .cart-title {
+    font-size: 20px;
+  }
+
+  .cart-total {
+    text-align: left; /* better on small screens */
+    font-size: 16px;
+  }
+
+  .checkout-btn {
+    font-size: 16px;
+    padding: 10px;
+  }
+}

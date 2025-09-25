@@ -149,3 +149,23 @@ body {
     margin-left: auto;
   }
 }
+
+/* ---------- Extra Small Screens (below 390px) ---------- */
+@media (max-width: 390px) {
+  nav h2 a {
+    font-size: 18px; /* shrink title */
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    max-width: 150px; /* prevent overflow */
+    display: inline-block;
+  }
+
+  .nav-brand {
+    gap: 8px; /* reduce spacing between title & hamburger */
+  }
+
+  .hamburger {
+    margin-left: 20px; /* reduce push so title fits */
+  }
+}
