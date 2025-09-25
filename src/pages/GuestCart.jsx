@@ -1,21 +1,26 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import useCartStore from "../store/cartStore";
-import useAuthStore from "../store/authStore";
+import useGuestCartStore from "../store/useGuestCartStore";
 import "../styles/Cart.css";
 
-function Cart() {
-  const { items, removeItem, checkout } = useCartStore();
-  const { user } = useAuthStore();
+function GuestCart() {
+  const { items: storeItems, removeItem, checkout, syncCart } = useGuestCartStore();
   const navigate = useNavigate();
 
+  const [items, setItems] = useState([]);
+
+  // Load items from localStorage on mount
+  useEffect(() => {
+    syncCart();
+  }, []);
+
+  useEffect(() => {
+    setItems(storeItems || []);
+  }, [storeItems]);
+
   const handleCheckout = () => {
-    if (!user) {
-      alert("Please log in to proceed to checkout");
-      navigate("/login");
-      return;
-    }
-    checkout(user.email);
+    checkout(); // Shows alert to login
+    navigate("/login");
   };
 
   const totalValue = items.reduce((sum, item) => sum + item.price * (item.quantity || 1), 0);
@@ -23,7 +28,7 @@ function Cart() {
 
   return (
     <div className="cart-container">
-      <h2 className="cart-title">My Cart</h2>
+      <h2 className="cart-title">Cart</h2>
 
       {items.length === 0 ? (
         <p className="empty-msg">Your cart is empty.</p>
@@ -36,21 +41,24 @@ function Cart() {
                 <span className="cart-details">
                   {item.name} - ₹{item.price} × {item.quantity || 1}
                 </span>
-                <button className="remove-btn" onClick={() => removeItem(item.id)}>Remove</button>
+                <button className="remove-btn" onClick={() => removeItem(item.id)}>
+                  Remove
+                </button>
               </li>
             ))}
           </ul>
 
           <div className="cart-total">
-            <strong>Total:</strong> ₹{totalValue}{" | "}
-            <strong>Total Quantity:</strong> {totalQuantity}
+            <strong>Total:</strong> ₹{totalValue} | <strong>Total Quantity:</strong> {totalQuantity}
           </div>
 
-          <button className="checkout-btn" onClick={handleCheckout}>Checkout</button>
+          <button className="checkout-btn" onClick={handleCheckout}>
+            Checkout
+          </button>
         </>
       )}
     </div>
   );
 }
 
-export default Cart;
+export default GuestCart;

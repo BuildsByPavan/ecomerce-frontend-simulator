@@ -3,7 +3,7 @@ import useAuthStore from "../store/authStore"; // Zustand auth store
 import "../styles/UserProfile.css";
 
 function UserProfile() {
-  const { user, logout, updateUser } = useAuthStore(); // 👈 make sure updateUser exists in authStore
+  const { user, logout, updateUser } = useAuthStore(); 
   const [isEditing, setIsEditing] = useState(false);
   const [formData, setFormData] = useState({
     name: user?.name || "",

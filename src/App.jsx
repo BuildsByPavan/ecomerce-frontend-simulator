@@ -13,6 +13,7 @@ import OrderHistory from "./pages/Orderhistory";
 import AboutUs from "./pages/AboutUs";
 import ContactUs from "./pages/ContactUs";
 import "./styles/main.css"
+import GuestCart from "./pages/GuestCart";
 function App() {
   const { user } = useAuthStore();
 
@@ -25,6 +26,7 @@ function App() {
         <Route path="/login" element={!user ? <Login /> : <Navigate to="/" />} />
         <Route path="/register" element={!user ? <Register /> : <Navigate to="/" />} />
         <Route path="/cart" element={user ? <Cart /> : <Navigate to="/login" />} />
+        <Route path="/guest-cart" element={<GuestCart/>}/>
         <Route path="/orders" element={user ? <OrderHistory /> : <Navigate to="/login" />} />
         <Route path="/profile" element={user ? <UserProfile /> : <Navigate to="/login" />} />
         <Route

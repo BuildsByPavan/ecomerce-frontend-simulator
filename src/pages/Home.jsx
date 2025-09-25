@@ -1,29 +1,29 @@
 import React, { useState } from "react";
 import useProductStore from "../store/productStore";
 import useCartStore from "../store/cartStore";
+import useGuestCartStore from "../store/useGuestCartStore";
 import useAuthStore from "../store/authStore";
 import ProductCard from "../components/ProductCard";
 import "../styles/Home.css";
-import ImageSlider from "../components/ImageSlider";
 
 function Home() {
   const { products } = useProductStore();
-  const addItem = useCartStore((state) => state.addItem);
   const { user } = useAuthStore();
+
+  // Use appropriate cart store based on login status
+  const addUserItem = useCartStore((state) => state.addItem);
+  const addGuestItem = useGuestCartStore((state) => state.addItem);
 
   const [searchQuery, setSearchQuery] = useState("");
   const [selectedCategory, setSelectedCategory] = useState("All");
 
-  // const images = [
-  //   "https://i.pinimg.com/736x/b6/89/96/b68996b0aeb13339740f961ada455a77.jpg",
-  // ];
-  // Add to cart
+  // Add item to cart (works for both users and guests)
   const handleAddToCart = (product) => {
-    if (!user) {
-      alert("Please log in to add items to cart");
-      return;
+    if (user) {
+      addUserItem(product);
+    } else {
+      addGuestItem(product);
     }
-    addItem(product);
     alert(`${product.name} added to cart!`);
   };
 
@@ -33,17 +33,16 @@ function Home() {
   // Filter products
   const filteredProducts = products.filter((product) => {
     const matchesSearch = product.name.toLowerCase().includes(searchQuery.toLowerCase());
-    const matchesCategory =
-      selectedCategory === "All" || product.category === selectedCategory;
+    const matchesCategory = selectedCategory === "All" || product.category === selectedCategory;
     return matchesSearch && matchesCategory;
   });
 
   return (
     <div className="home-container">
       <div className="home-layout">
-        {/* Sidebar for category filter */}
+        {/* Sidebar */}
         <aside className="sidebar">
-          <h3>Categories</h3>
+          <h3 className="categories-sidebar">Categories</h3>
           <ul>
             {categories.map((cat) => (
               <li
@@ -57,9 +56,8 @@ function Home() {
           </ul>
         </aside>
 
-        {/* Main content */}
+        {/* Products */}
         <main className="products-section">
-          {/* Search bar */}
           <input
             type="text"
             placeholder="Search products"
@@ -67,9 +65,7 @@ function Home() {
             onChange={(e) => setSearchQuery(e.target.value)}
             className="search-bar"
           />
-         
 
-          {/* Products grid */}
           {filteredProducts.length === 0 ? (
             <p className="empty-msg">No products found.</p>
           ) : (

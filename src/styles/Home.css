@@ -2,7 +2,10 @@
   display: flex;
   gap: 20px;
 }
-
+.categories-sidebar{
+  margin: 5px;
+  text-align: center;
+}
 /* Sidebar */
 .sidebar {
   width: 200px;

@@ -11,78 +11,127 @@ nav {
   top: 0;
   left: 0;
   right: 0;
-  height: 60px;
+  height: 64px;
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background-color: #333;
-  color: white;
-  padding: 0 20px;
+  background: linear-gradient(90deg, #1a1a1a, #2c2c2c); /* sleek gradient */
+  color: #fff;
+  padding: 0 24px;
   z-index: 1000;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
 }
 
 /* Logo / Title */
-nav h2 {
-  font-size: 20px;
+nav h2 a {
+  font-size: 22px;
   font-weight: bold;
+  color: #ff9800;
+  text-decoration: none;
+  transition: color 0.3s ease;
+}
+
+nav h2 a:hover {
+  color: #ffc107; /* lighter orange */
+}
+
+/* Brand + hamburger container */
+.nav-brand {
+  display: flex;
+  align-items: center;
+  gap: 15px;
 }
 
 /* Links container */
 .nav-links {
   display: flex;
   align-items: center;
-  gap: 15px;
+  gap: 20px;
 }
 
 /* Links */
 .nav-links a {
   text-decoration: none;
-  color: white;
-  transition: color 0.3s;
+  color: #ddd;
+  font-size: 16px;
+  transition: color 0.3s ease;
 }
 
 .nav-links a:hover {
-  color: #ff9800; /* hover effect */
+  color: #ff9800;
 }
 
 /* Logout button */
 nav button {
-  background-color: #ff4d4d;
+  background: #ff4d4d;
   border: none;
-  color: white;
-  padding: 5px 10px;
-  border-radius: 4px;
+  color: #fff;
+  padding: 6px 12px;
+  border-radius: 6px;
   cursor: pointer;
-  transition: background 0.3s;
+  font-size: 14px;
+  transition: all 0.3s ease;
 }
 
 nav button:hover {
-  background-color: #e60000;
+  background: #e60000;
+}
+
+/* Cart link always visible */
+.cart-link {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  position: relative;
+  margin-left: 20px;
+  text-decoration: none;
+  color: #ddd;
+  font-size: 16px;
+  transition: color 0.3s ease;
+}
+
+.cart-link:hover {
+  color: #ff9800;
+}
+
+/* Cart badge */
+.cart-badge {
+  background: #e60023; /* red with modern tone */
+  color: #fff;
+  font-size: 12px;
+  font-weight: bold;
+  border-radius: 50%;
+  padding: 2px 7px;
+  position: absolute;
+  top: -8px;
+  right: -12px;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
 }
 
 /* Hamburger button (hidden on desktop) */
 .hamburger {
   display: none;
-  font-size: 24px;
+  font-size: 26px;
   cursor: pointer;
+  color: #fff;
 }
 
 /* Push page content down */
 body {
-  padding-top: 60px; /* equal to navbar height */
+  padding-top: 64px; /* equal to navbar height */
 }
 
 /* ---------- Mobile Styles ---------- */
 @media (max-width: 768px) {
   .nav-links {
     position: absolute;
-    top: 60px;
+    top: 64px;
     left: 0;
     right: 0;
-    background: #333;
+    background: #222;
     flex-direction: column;
-    gap: 10px;
-    padding: 15px 0;
+    gap: 12px;
+    padding: 20px 0;
     display: none; /* hidden by default */
   }
 
@@ -91,6 +140,12 @@ body {
   }
 
   .hamburger {
+    margin-left: 128px;
     display: block; /* show on mobile */
+  }
+
+  /* Keep cart visible beside hamburger */
+  .cart-link {
+    margin-left: auto;
   }
 }
