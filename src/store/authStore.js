@@ -7,7 +7,7 @@ const useAuthStore = create((set) => ({
   login: (email, password) =>
     set((state) => {
       if (email === "admin@gmail.com" && password === "admin123") {
-        const adminUser = { email, role: "admin" };
+        const adminUser = { email, role: "admin", name: "Admin" };
         localStorage.setItem("user", JSON.stringify(adminUser));
         return { user: adminUser };
       }
@@ -37,6 +37,29 @@ const useAuthStore = create((set) => ({
     set(() => {
       localStorage.removeItem("user");
       return { user: null };
+    }),
+
+  // ✅ Added updateUser
+  updateUser: (updatedData) =>
+    set((state) => {
+      if (!state.user) return state;
+
+      // Update current user
+      const updatedUser = { ...state.user, ...updatedData };
+
+      // Update in users array if not admin
+      let updatedUsers = state.users;
+      if (state.user.role !== "admin") {
+        updatedUsers = state.users.map((u) =>
+          u.email === state.user.email ? { ...u, ...updatedData } : u
+        );
+        localStorage.setItem("users", JSON.stringify(updatedUsers));
+      }
+
+      // Save updated user in localStorage
+      localStorage.setItem("user", JSON.stringify(updatedUser));
+
+      return { user: updatedUser, users: updatedUsers };
     }),
 }));
 
