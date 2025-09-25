@@ -1,7 +1,7 @@
 import React from "react";
 import useCartStore from "../store/cartStore";
 import useAuthStore from "../store/authStore";
-import "../styles/cart.css";
+import "../styles/Cart.css";
 
 function Cart() {
   const { items, removeItem, checkout } = useCartStore();
