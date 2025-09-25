@@ -83,7 +83,7 @@ const Navbar = () => {
         onClick={() => setIsOpen(false)}
         className="cart-link"
       >
-        <FaShoppingCart style={{ marginRight: "5px" }} />
+        <FaShoppingCart size={26} />
         
         {totalQuantity > 0 && (
           <span className="cart-badge">{totalQuantity}</span>
