@@ -1,8 +1,13 @@
-body{
-  min-height: 100vh; /* full viewport height */
-  background-image: url("https://img.freepik.com/free-photo/arrangement-black-friday-shopping-carts-with-copy-space_23-2148667047.jpg?semt=ais_hybrid&w=740&q=80"); /* replace with your image */
-  background-size: cover;  /* cover full screen */
-  background-position: center; /* center image */
-  background-repeat: no-repeat;
-  color: white; /* makes text visible on dark bg */
+/* Prevent horizontal scroll */
+html, body {
+  width: 100%;
+  overflow-x: hidden; /* hide horizontal scroll */
+  margin: 0;
+  padding: 0;
+}
+body {
+  padding-top: 60px; /* navbar height */
+}
+.content {
+  flex: 1; /* take all remaining space */
 }

@@ -17,10 +17,10 @@ function App() {
   const { user } = useAuthStore();
 
   return (
-    <Router>
+    <Router className="layout">
       <Navbar />
-
-      <Routes>
+      
+      <Routes className="content">
         <Route path="/" element={<Home />} />
         <Route path="/login" element={!user ? <Login /> : <Navigate to="/" />} />
         <Route path="/register" element={!user ? <Register /> : <Navigate to="/" />} />

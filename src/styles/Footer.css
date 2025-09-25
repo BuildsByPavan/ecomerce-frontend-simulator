@@ -4,6 +4,10 @@ footer {
   padding: 20px;
   text-align: center;
   font-size: 14px;
+  position: relative; /* default */
+  bottom: 0;
+  width: 100%;
+  margin-top: auto; /* push footer down if page is short */
 }
 
 /* Layout: stack items with spacing */
@@ -27,4 +31,36 @@ footer a:hover {
 footer div:not(:last-child) {
   border-bottom: 1px solid #444;
   padding-bottom: 10px;
+}
+
+/* Ensure footer sticks to bottom even if little content */
+html, body {
+  height: 100%;
+}
+
+#root, .layout {
+  display: flex;
+  flex-direction: column;
+  min-height: 100%;
+}
+
+/* ---------- Mobile Styles ---------- */
+@media (max-width: 768px) {
+  footer {
+    font-size: 13px;
+    text-align: left; /* align text to left for better readability */
+    padding: 15px;
+  }
+
+  footer div {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-start;
+    margin: 8px 0;
+  }
+
+  footer a {
+    display: block;
+    margin: 4px 0; /* stack links with spacing */
+  }
 }

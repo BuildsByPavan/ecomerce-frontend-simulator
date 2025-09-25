@@ -7,12 +7,18 @@
 
 /* Navbar container */
 nav {
+  position: fixed;
+  top: 0;
+  left: 0;
+  right: 0;
+  height: 60px;
   display: flex;
   justify-content: space-between;
   align-items: center;
   background-color: #333;
   color: white;
-  padding: 20px 20px;
+  padding: 0 20px;
+  z-index: 1000;
 }
 
 /* Logo / Title */
@@ -22,20 +28,20 @@ nav h2 {
 }
 
 /* Links container */
-nav div {
+.nav-links {
   display: flex;
   align-items: center;
   gap: 15px;
 }
 
 /* Links */
-nav a {
+.nav-links a {
   text-decoration: none;
   color: white;
   transition: color 0.3s;
 }
 
-nav a:hover {
+.nav-links a:hover {
   color: #ff9800; /* hover effect */
 }
 
@@ -52,4 +58,39 @@ nav button {
 
 nav button:hover {
   background-color: #e60000;
+}
+
+/* Hamburger button (hidden on desktop) */
+.hamburger {
+  display: none;
+  font-size: 24px;
+  cursor: pointer;
+}
+
+/* Push page content down */
+body {
+  padding-top: 60px; /* equal to navbar height */
+}
+
+/* ---------- Mobile Styles ---------- */
+@media (max-width: 768px) {
+  .nav-links {
+    position: absolute;
+    top: 60px;
+    left: 0;
+    right: 0;
+    background: #333;
+    flex-direction: column;
+    gap: 10px;
+    padding: 15px 0;
+    display: none; /* hidden by default */
+  }
+
+  .nav-links.show {
+    display: flex; /* show when toggled */
+  }
+
+  .hamburger {
+    display: block; /* show on mobile */
+  }
 }

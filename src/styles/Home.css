@@ -9,15 +9,18 @@
   padding: 10px;
   border-right: 1px solid #ccc;
 }
+
 .sidebar ul {
   list-style: none;
   padding: 0;
 }
+
 .sidebar li {
   padding: 8px;
   cursor: pointer;
   border-radius: 4px;
 }
+
 .sidebar li:hover,
 .sidebar li.active {
   background-color: #007bff;
@@ -28,14 +31,18 @@
 .products-section {
   flex: 1;
 }
+
 .search-bar {
   margin-top: 16px;
   width: 80%;
-  padding: 8px;
+  padding: 8px 8px 8px 36px; /* left padding for the icon */
   margin-bottom: 20px;
   margin-left: 80px;
   border-radius: 4px;
   border: 1px solid #ccc;
+  font-size: 14px;
+  background: url("https://cdn-icons-png.flaticon.com/512/622/622669.png") no-repeat 10px center;
+  background-size: 16px;
 }
 
 /* Products grid */
@@ -44,3 +51,42 @@
   grid-template-columns: repeat(auto-fill, minmax(220px, 1fr));
   gap: 20px;
 }
+
+/* ---------- Mobile Styles ---------- */
+@media (max-width: 768px) {
+  .home-layout {
+    flex-direction: column; /* stack sidebar above products */
+  }
+
+  .sidebar {
+    width: 100%; /* full width */
+    border-right: none;
+    border-bottom: 1px solid #ccc;
+    padding: 10px 0;
+  }
+
+  .sidebar ul {
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: center;
+    gap: 10px;
+  }
+
+  .sidebar li {
+    padding: 6px 12px;
+    font-size: 14px;
+  }
+
+  .search-bar {
+    width: 90%;
+    margin-left: 5%;
+    font-size: 13px;
+    background-size: 14px; /* slightly smaller icon */
+  }
+
+  .products-grid {
+    grid-template-columns: repeat(auto-fill, minmax(160px, 1fr)); /* smaller cards */
+    gap: 15px;
+  }
+}
+

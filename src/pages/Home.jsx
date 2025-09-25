@@ -62,7 +62,7 @@ function Home() {
           {/* Search bar */}
           <input
             type="text"
-            placeholder="Search products..."
+            placeholder="Search products"
             value={searchQuery}
             onChange={(e) => setSearchQuery(e.target.value)}
             className="search-bar"
