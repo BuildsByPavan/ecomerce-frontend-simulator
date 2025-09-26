@@ -14,10 +14,13 @@ import AboutUs from "./pages/AboutUs";
 import ContactUs from "./pages/ContactUs";
 import "./styles/main.css"
 import GuestCart from "./pages/GuestCart";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 
 function App() {
   const { user } = useAuthStore();
   return (
+    <>
     <Router className="layout">
       <Navbar />
       
@@ -39,6 +42,8 @@ function App() {
 
       <Footer />
     </Router>
+    <ToastContainer position="top-right" theme="dark" />
+    </>
   );
 }
 

@@ -4,13 +4,12 @@ import useCartStore from "../store/cartStore";
 import useGuestCartStore from "../store/useGuestCartStore";
 import useAuthStore from "../store/authStore";
 import ProductCard from "../components/ProductCard";
-import { ToastContainer, toast } from "react-toastify";
-import "react-toastify/dist/ReactToastify.css"; // import styles
 import "../styles/Home.css";
 
 function Home() {
   const { products } = useProductStore();
   const { user } = useAuthStore();
+
   // Use appropriate cart store based on login status
   const addUserItem = useCartStore((state) => state.addItem);
   const addGuestItem = useGuestCartStore((state) => state.addItem);
@@ -25,15 +24,7 @@ function Home() {
     } else {
       addGuestItem(product);
     }
-    toast.success(`${product.name} added to cart!`, {
-      position: "top-right",
-      autoClose: 2000,
-      hideProgressBar: false,
-      closeOnClick: true,
-      pauseOnHover: false,
-      draggable: true,
-      theme: "colored",
-    });
+    alert(`${product.name} added to cart!`);
   };
 
   // Get unique categories
@@ -91,9 +82,6 @@ function Home() {
           )}
         </main>
       </div>
-
-      {/* Toast notifications */}
-      <ToastContainer />
     </div>
   );
 }

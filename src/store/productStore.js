@@ -128,8 +128,6 @@ const useProductStore = create((set) => ({
       );
       return { products: updatedProducts };
     }),
-
-  // ✅ Reset to default dataset (useful if you want a "restore" button)
   resetProducts: () => set({ products: defaultProducts }),
 }));
 

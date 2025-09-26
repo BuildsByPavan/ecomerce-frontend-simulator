@@ -97,10 +97,18 @@
 }
 
 /* ------------------ RESPONSIVE ------------------ */
+@media (max-width: 1024px) {
+  .product-card {
+    max-width: 220px;
+    padding: 14px;
+  }
+}
+
 @media (max-width: 768px) {
   .product-card {
-    max-width: 100%;  /* Full width on tablets & mobile */
-    margin: 10px;
+    max-width: 45%;  /* 2 per row on tablets */
+    margin: 10px auto;
+    padding: 12px;
   }
 
   .product-card img {
@@ -108,7 +116,7 @@
   }
 
   .product-card h3 {
-    font-size: 0.95rem;
+    font-size: 0.9rem;
   }
 
   .product-card .price {
@@ -116,22 +124,35 @@
   }
 
   .product-card p {
-    font-size: 0.85rem;
+    font-size: 0.8rem;
   }
 
   .product-card button {
-    font-size: 0.85rem;
-    padding: 8px;
+    font-size: 0.8rem;
+    padding: 7px;
   }
 }
 
 @media (max-width: 480px) {
   .product-card {
-    padding: 12px;
+    max-width: 100%; /* Full width on very small screens */
+    padding: 10px;
   }
 
   .product-card img {
-    max-height: 120px;
+    max-height: 110px;
+  }
+
+  .product-card h3 {
+    font-size: 0.85rem;
+  }
+
+  .product-card .price {
+    font-size: 0.9rem;
+  }
+
+  .product-card p {
+    font-size: 0.75rem;
   }
 
   .product-card .actions {
@@ -140,5 +161,7 @@
 
   .product-card button {
     width: 100%;
+    font-size: 0.8rem;
+    padding: 8px;
   }
 }
