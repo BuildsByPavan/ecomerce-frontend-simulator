@@ -34,7 +34,7 @@ const Navbar = () => {
       <div className="nav-brand">
         <h2>
           <Link to="/" onClick={() => setIsOpen(false)}>
-            E-Commerce-Simulator
+            E-Commerce
           </Link>
         </h2>
         <span className="hamburger" onClick={() => setIsOpen(!isOpen)}>
