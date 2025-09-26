@@ -11,7 +11,6 @@ import "../styles/Home.css";
 function Home() {
   const { products } = useProductStore();
   const { user } = useAuthStore();
-
   // Use appropriate cart store based on login status
   const addUserItem = useCartStore((state) => state.addItem);
   const addGuestItem = useGuestCartStore((state) => state.addItem);

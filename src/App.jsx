@@ -14,9 +14,9 @@ import AboutUs from "./pages/AboutUs";
 import ContactUs from "./pages/ContactUs";
 import "./styles/main.css"
 import GuestCart from "./pages/GuestCart";
+
 function App() {
   const { user } = useAuthStore();
-
   return (
     <Router className="layout">
       <Navbar />

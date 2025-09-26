@@ -24,11 +24,11 @@ const useCartStore = create((set) => ({
     }),
 
   removeItem: (id) =>
-    set((state) => {
-      const updated = state.items.filter((_, i) => i !== id);
-      localStorage.setItem("cart", JSON.stringify(updated));
-      return { items: updated };
-    }),
+  set((state) => {
+    const updated = state.items.filter((item) => item.id !== id);
+    localStorage.setItem("cart", JSON.stringify(updated));
+    return { items: updated };
+  }),
 
   checkout: (userEmail) =>
     set((state) => {

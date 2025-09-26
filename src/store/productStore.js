@@ -104,8 +104,7 @@ const defaultProducts = [
   },
 ];
 
-const initialProducts =
-  JSON.parse(localStorage.getItem("products")) || defaultProducts;
+const initialProducts = defaultProducts;
 
 const useProductStore = create((set) => ({
   products: initialProducts,
@@ -113,14 +112,12 @@ const useProductStore = create((set) => ({
   addProduct: (product) =>
     set((state) => {
       const updatedProducts = [...state.products, product];
-      localStorage.setItem("products", JSON.stringify(updatedProducts));
       return { products: updatedProducts };
     }),
 
   deleteProduct: (id) =>
     set((state) => {
       const updatedProducts = state.products.filter((p) => p.id !== id);
-      localStorage.setItem("products", JSON.stringify(updatedProducts));
       return { products: updatedProducts };
     }),
 
@@ -129,9 +126,11 @@ const useProductStore = create((set) => ({
       const updatedProducts = state.products.map((p) =>
         p.id === updatedProduct.id ? updatedProduct : p
       );
-      localStorage.setItem("products", JSON.stringify(updatedProducts));
       return { products: updatedProducts };
     }),
+
+  // ✅ Reset to default dataset (useful if you want a "restore" button)
+  resetProducts: () => set({ products: defaultProducts }),
 }));
 
 export default useProductStore;

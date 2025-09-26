@@ -11,10 +11,10 @@ function AdminDashboard() {
   const [description, setDescription] = useState("");
   const [editingId, setEditingId] = useState(null);
   const [category, setCategory] = useState("");
-
+  
   const { products, addProduct, deleteProduct, updateProduct } = useProductStore();
   const users = useAuthStore((state) => state.users);
-
+  
   // File upload → Base64
   const handleImageUpload = (e) => {
     const file = e.target.files[0];

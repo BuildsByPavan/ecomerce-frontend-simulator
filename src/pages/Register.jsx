@@ -1,7 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import useAuthStore from "../store/authStore";
-import "../styles/Register.css"; // import css
+import "../styles/Register.css";
+import { toast } from "react-toastify";
 
 function Register() {
   const [formData, setFormData] = useState({
@@ -20,8 +21,11 @@ function Register() {
   const handleSubmit = (e) => {
     e.preventDefault();
     register(formData.name, formData.email, formData.password);
-    alert(`Registered successfully! Welcome, ${formData.name}`);
-    navigate("/");
+
+    toast.success(`Registered successfully! Welcome, ${formData.name}`, {
+      autoClose: 2000,
+      onClose: () => navigate("/"), // redirect after toast
+    });
   };
 
   return (
